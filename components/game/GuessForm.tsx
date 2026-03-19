@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 import { useAccount } from 'wagmi';
 import { useSubmitGuess, useGuessReceipt } from '@/lib/contracts/guess-game';
 import { trackTransaction } from '@/utils/track';
+import { formatEther } from 'viem';
 
 export function GuessForm() {
   const [guessNumber, setGuessNumber] = useState('');
   const { address } = useAccount();
-  const { submitGuess, hash, isPending, error } = useSubmitGuess();
+  const { submitGuess, hash, isPending, error, prizeAmount } = useSubmitGuess();
   const { isLoading: isConfirming, isSuccess } = useGuessReceipt(hash);
 
   // 交易成功后调用埋点
@@ -22,31 +23,47 @@ export function GuessForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const num = parseInt(guessNumber);
-    if (!isNaN(num) && num >= 0) {
-      submitGuess(num);
+    if (!isNaN(num) && num >= 1 && num <= 10) {
+      try {
+        submitGuess(num);
+      } catch (err) {
+        console.error('提交猜测失败:', err);
+      }
     }
   };
 
-  const isValid = guessNumber !== '' && !isNaN(parseInt(guessNumber)) && parseInt(guessNumber) >= 0;
+  const isValid = guessNumber !== '' && !isNaN(parseInt(guessNumber)) && parseInt(guessNumber) >= 1 && parseInt(guessNumber) <= 10;
 
   return (
     <div className="w-full max-w-md mx-auto">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="guess" className="block text-sm font-medium mb-2">
-            输入你的猜测数字
+            输入你的猜测数字 (1-10)
           </label>
           <input
             id="guess"
             type="number"
-            min="0"
+            min="1"
+            max="10"
             value={guessNumber}
             onChange={(e) => setGuessNumber(e.target.value)}
-            placeholder="请输入数字"
+            placeholder="请输入 1-10 之间的数字"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             disabled={isPending || isConfirming}
           />
+          {guessNumber && !isValid && (
+            <p className="mt-1 text-sm text-red-600">请输入 1-10 之间的数字</p>
+          )}
         </div>
+
+        {prizeAmount && (
+          <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <p className="text-sm text-yellow-800">
+              💰 需要支付: <strong>{formatEther(prizeAmount)} ETH</strong>
+            </p>
+          </div>
+        )}
 
         <button
           type="submit"
@@ -75,7 +92,7 @@ export function GuessForm() {
       {isSuccess && (
         <div className="mt-4 p-4 bg-green-50 rounded-lg">
           <p className="text-sm font-medium text-green-900">✅ 交易成功！</p>
-          <p className="text-xs text-green-700 mt-1">请查看链上结果确认是否猜中</p>
+          <p className="text-xs text-green-700 mt-1">请查看链上事件确认是否猜中（GuessSuccess 或 GuessFailure）</p>
         </div>
       )}
 

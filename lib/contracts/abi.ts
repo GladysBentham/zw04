@@ -1,48 +1,59 @@
-// 猜数字游戏合约 ABI
+// 猜数字游戏合约 ABI - BaseGuess
 // 合约地址: 0xb38c1d27f15d79684d58c4082784a14d3fd84189
 // 
-// 注意：这是一个基础 ABI 结构，包含常见的猜数字游戏方法
-// 如果实际合约方法名或参数不同，请根据实际情况调整
+// 合约功能：玩家猜测1-10之间的数字，猜对获得奖励
 
 export const GUESS_GAME_ABI = [
-  // 提交猜测 - 可能的方法名: guess, submitGuess, makeGuess
+  // 玩家猜数字 - 需要支付 prizeAmount 的 ETH
   {
-    name: 'guess',
+    name: 'guessNumber',
     type: 'function',
     stateMutability: 'payable',
-    inputs: [{ name: 'number', type: 'uint256' }],
+    inputs: [{ name: '_guessedNumber', type: 'uint8' }],
     outputs: [],
   },
-  // 读取游戏状态
+  // 读取奖励金额
   {
-    name: 'targetNumber',
+    name: 'prizeAmount',
     type: 'function',
     stateMutability: 'view',
     inputs: [],
     outputs: [{ name: '', type: 'uint256' }],
   },
+  // 读取合约所有者
   {
-    name: 'prizePool',
+    name: 'owner',
     type: 'function',
     stateMutability: 'view',
     inputs: [],
-    outputs: [{ name: '', type: 'uint256' }],
+    outputs: [{ name: '', type: 'address' }],
   },
+  // 所有者提款
   {
-    name: 'gameActive',
+    name: 'withdraw',
     type: 'function',
-    stateMutability: 'view',
+    stateMutability: 'nonpayable',
     inputs: [],
-    outputs: [{ name: '', type: 'bool' }],
+    outputs: [],
   },
-  // 事件
+  // 事件：猜测成功
   {
-    name: 'GuessSubmitted',
+    name: 'GuessSuccess',
     type: 'event',
     inputs: [
-      { name: 'player', type: 'address', indexed: true },
-      { name: 'guess', type: 'uint256', indexed: false },
-      { name: 'won', type: 'bool', indexed: false },
+      { name: 'player', type: 'address', indexed: false },
+      { name: 'guessedNumber', type: 'uint8', indexed: false },
+      { name: 'correctNumber', type: 'uint8', indexed: false },
+    ],
+  },
+  // 事件：猜测失败
+  {
+    name: 'GuessFailure',
+    type: 'event',
+    inputs: [
+      { name: 'player', type: 'address', indexed: false },
+      { name: 'guessedNumber', type: 'uint8', indexed: false },
+      { name: 'correctNumber', type: 'uint8', indexed: false },
     ],
   },
 ] as const;

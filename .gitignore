@@ -38,6 +38,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# deployment scripts with secrets
+deploy-from-github.ps1
+deployment-info.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

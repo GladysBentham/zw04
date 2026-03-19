@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "Base猜数字 - Base链上猜数字游戏",
   description: "在Base链上玩猜数字游戏，猜对即可获得奖励！仅需极低gas费用。",
   other: {
-    'base:app_id': '69bbc28fd6e7f63a57b5e958',
+    'base:app_id': '69ba665b5b0dee671be77ec5',
   },
 };
 
@@ -32,8 +32,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-    
-        <meta name="base:app_id" content="69bbc28fd6e7f63a57b5e958" />
+      <meta name="base:app_id" content="69ba665b5b0dee671be77ec5" />
       </head>
       <body className="min-h-full flex flex-col">
         <Providers>{children}</Providers>

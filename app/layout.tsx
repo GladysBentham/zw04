@@ -32,7 +32,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        <meta name="base:app_id" content="69ba665b5b0dee671be77ec5" />
+        <meta name="talentapp:project_verification" content="8573e511feaf4af57c60a7e47262b0766da325cd34db9394b17fabaefb99b96e75431ec142f9e6fe4506d829151508c30be3087cda6130ddf975768aeb624d22">
       </head>
       <body className="min-h-full flex flex-col">
         <Providers>{children}</Providers>

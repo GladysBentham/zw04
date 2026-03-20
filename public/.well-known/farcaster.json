@@ -2,12 +2,13 @@
   "miniapp": {
     "version": "1",
     "name": "Base猜数字",
-    "homeUrl": "https://finalzw04.vercel.app/",
-    "iconUrl": "https://finalzw04.vercel.app/icon.png",  // 512x512 或 200x200 PNG，放 public/icon.png
-    "imageUrl": "https://finalzw04.vercel.app/og-image.png",  // <-- 必须加这个！3:2 比例图片（推荐 1200x800 或类似），放 public/og-image.png
+    
+    "homeUrl": "https://yanzheng2zw04.vercel.app/",
+    "iconUrl": "https://yanzheng2zw04.vercel.app/icon.png",  // 512x512 或 200x200 PNG，放 public/icon.png
+    "imageUrl": "https://yanzheng2zw04.vercel.app/og-image.png",  // <-- 必须加这个！3:2 比例图片（推荐 1200x800 或类似），放 public/og-image.png
     "buttonTitle": "开始猜数字",
     "description": "Base链上猜数字游戏，猜对赢奖励！",
-    "splashImageUrl": "https://finalzw04.vercel.app/splash.png",  // 可选，开屏图 200x200
+    "splashImageUrl": "https://yanzheng2zw04.vercel.app/splash.png",  // 可选，开屏图 200x200
     "splashBackgroundColor": "#000000"
   }
 }

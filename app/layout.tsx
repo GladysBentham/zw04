@@ -17,7 +17,8 @@ export const metadata: Metadata = {
   title: "Base猜数字 - Base链上猜数字游戏",
   description: "在Base链上玩猜数字游戏，猜对即可获得奖励！仅需极低gas费用。",
   other: {
-    'base:app_id': '69ba665b5b0dee671be77ec5',
+    talentapp:project_verification":
+      "8573e511feaf4af57c60a7e47262b0766da325cd34db9394b17fabaefb99b96e75431ec142f9e6fe4506d829151508c30be3087cda6130ddf975768aeb624d22",
   },
 };
 

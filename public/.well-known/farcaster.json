@@ -1,20 +1,8 @@
-// app/.well-known/farcaster.json/route.ts
-import { NextResponse } from 'next/server';
-
-export async function GET() {
-  return NextResponse.json({
-    miniapp: {
-      version: "1",  // 必须是字符串 "1"
-      name: "Base猜数字",  // 你的 app 显示名
-      homeUrl: "https://finalzw04.vercel.app/",  // 必须匹配你填的 App URL
-      iconUrl: "https://finalzw04.vercel.app/icon.png",  // 加个图标（512x512 PNG，放 public/icon.png）
-      // 强烈推荐加这些，避免后续问题：
-      imageUrl: "https://finalzw04.vercel.app/og.png",  // 分享/预览图
-      buttonTitle: "开始猜数字",
-      description: "Base链上猜数字游戏，连接钱包提交猜测，猜对赢奖励！",
-      splashImageUrl: "https://finalzw04.vercel.app/splash.png",  // 可选，开屏图
-      splashBackgroundColor: "#000000"
-    }
-    // accountAssociation 字段先空着，后面签名后再加
-  });
+{
+  "miniapp": {
+    "version": "1",
+    "name": "Base猜数字",
+    "homeUrl": "https://finalzw04.vercel.app/",
+    "iconUrl": "https://finalzw04.vercel.app/icon.png"
+  }
 }
